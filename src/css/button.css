@@ -1,0 +1,25 @@
+.btn-all {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  height: 85vh;
+}
+
+.d-grid {
+  width: 75%; 
+  height: 30%;
+}
+
+.btn {
+  padding: 10px;
+  font-size: 22px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: #000 !important;
+  background-color: aliceblue !important; 
+  transition: background-color 0.3s ease; 
+}
+
+.btn:hover {
+  background-color: #1498d5 !important; 
+  color: white !important; 
+}

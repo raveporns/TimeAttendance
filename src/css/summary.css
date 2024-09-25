@@ -1,0 +1,31 @@
+.nav-link {
+  display: flex;
+}
+
+.summary-container {
+  display: flex;
+  justify-items: center;
+  height: 85vh;
+  width: 100%;
+}
+
+.col-3 {
+  opacity: 100% !important;
+}
+
+.col-sm-9 {
+  opacity: 90%;
+}
+
+.nav-link {
+  color: rgb(0, 0, 0) !important;
+  font-family: "Times New Roman", Times, serif;
+  height: 50px;
+  background-color: aliceblue !important;
+  transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: #1498d5 !important;
+  color: white !important;
+}

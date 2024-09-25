@@ -1,0 +1,61 @@
+form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+label {
+  color: 0078bf;
+}
+
+.form-label {
+  color: 0078bf;
+  display: flex;
+}
+
+.form-control {
+  width: 100%;
+}
+
+.form-center {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.all-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+img {
+  margin-top: 20px !important;
+}
+
+.form-square {
+  margin-top: 15%;
+  border-radius: 15px;
+  padding: 20px;
+  width: 350px;
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.square {
+  height: 10px;
+  background-color: #0078bf;
+  margin-bottom: 20px;
+}
+
+.mb-3 {
+  margin-bottom: 15px;
+}
+
+.btn {
+  background-color: #0078bf;
+  color: aliceblue;
+  border-radius: 10px;
+  margin: 10px;
+}

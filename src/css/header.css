@@ -1,0 +1,74 @@
+.navbar {
+  height: 150px;
+}
+
+.navbar-brand {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 29px;
+  color: #000 !important;
+}
+
+.bg-navbar {
+  background-color: aliceblue;
+}
+
+img {
+  width: 150px;
+  height: auto;
+  margin-bottom: 60px;
+}
+
+.navbar-position {
+  margin-bottom: 5%;
+}
+
+.navbar-position {
+  display: flex;
+  justify-items: end;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.navbar-position i {
+  font-size: 30px;
+}
+
+.square {
+  width: 180px; 
+  height: 60px !important ; 
+  background-color: #0078bf; 
+  display: flex; 
+  border-radius: 30px; 
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+  align-items: center;
+  
+}
+
+.square i {
+  color: white; 
+  font-size: 30px;
+  margin-left: 20px;
+}
+
+#signout {
+  color: #0078bf; 
+  font-size: 35px; 
+  cursor: pointer; 
+  padding: 15px !important;
+  margin-bottom: 15px;
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+}
+
+p{
+    font-size: 20px;
+    color: antiquewhite;
+    margin-top:15px ;
+    margin-left: 18px;
+}
+
