@@ -3,11 +3,11 @@ import "../css/header.css";
 
 const Header = () => {
   return (
-    <nav class="navbar navbar-dark bg-navbar">
-      <div class="container-fluid">
+    <nav className="navbar navbar-dark bg-navbar">
+      <div className="container-fluid">
         <img src="/odds_logo.png" alt="Logo" />
         <div className="navbar-position">
-          <a class="navbar-brand" href="#">
+          <a className="navbar-brand" href="#">
             Time Attendance
           </a>
           <div className="icon-container">

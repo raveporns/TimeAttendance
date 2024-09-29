@@ -1,19 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../css/button.css";
 
 const Button = () => {
   return (
     <div className="btn-all">
-      <div class="d-grid gap-2 col-6 mx-auto">
-        <button class="btn btn-color" type="button">
+      <div className="d-grid">
+        <Link to="/checktime" className="btn">
           การเข้า-ออกงาน
-        </button>
-        <button class="btn btn-color" type="button">
+        </Link>
+        <Link to="/leave" className="btn">
           การลา
-        </button>
-        <button class="btn btn-color" type="button">
+        </Link>
+        <Link to="/summary" className="btn">
           การรายงานผล
-        </button>
+        </Link>
       </div>
     </div>
   );

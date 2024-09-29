@@ -9,24 +9,24 @@ const Summary = () => {
       <Header />
 
       <div className="summary-container">
-        <div class="col-3 bg-light p-3 border">
-          <nav class="nav flex-column">
-            <a class="nav-link" href="#">
+        <div className="col-3 bg-light p-3 border">
+          <nav className="nav flex-column">
+            <a className="nav-link" href="#">
               มาสายทั้งหมด
             </a>
-            <a class="nav-link" href="#">
+            <a className="nav-link" href="#">
               ลาทั้งหมด
             </a>
-            <a class="nav-link" href="#">
+            <a className="nav-link" href="#">
               มาสายวันนี้
             </a>
-            <a class="nav-link" href="#">
+            <a className="nav-link" href="#">
               ลาวันนี้
             </a>
           </nav>
         </div>
-        <div class="col-sm-9 bg-light p-3 border">
-          <table class="table">
+        <div className="col-sm-9 bg-light p-3 border">
+          <table className="table">
             <thead>
               <tr>
                 <th scope="col">#</th>
