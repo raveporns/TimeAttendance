@@ -9,7 +9,7 @@ const Login = () => {
         <div className="form-center">
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
-              Email address
+              บัญชีผู้ใช้
             </label>
             <input
               type="email"
@@ -20,7 +20,7 @@ const Login = () => {
           </div>
           <div className="mb-3">
             <label htmlFor="exampleInputPassword1" className="form-label">
-              Password
+              รหัสผ่าน
             </label>
             <input
               type="password"
@@ -29,6 +29,7 @@ const Login = () => {
             />
           </div>
         </div>
+        <span> * ลืมรหัสผ่านติดต่อที่ admin@odds.com *</span>
         <button type="submit" className="btn ">
           เข้าสู่ระบบ
         </button>
