@@ -1,68 +1,76 @@
-/* src/css/summary.css */
-
 body {
+  background-color: #0078bf;
   margin: 0;
   font-family: "Times New Roman", Times, serif;
-  overflow: hidden; /* ปิดการเลื่อนของหน้าจอ */
+  overflow: hidden;
 }
 
 .header {
-  height: 50px; /* กำหนดความสูงของ header */
-  background-color: aliceblue; /* สีพื้นหลังของ header */
+  height: 50px;
+  background-color: aliceblue;
   display: flex;
-  align-items: center; /* จัดกลางแนวตั้ง */
-  padding: 0 20px; /* เพิ่ม padding ซ้าย-ขวา */
+  align-items: center;
+  padding: 0 20px;
 }
 
 .summary-container {
+  background-color: #ffffff; /* สีพื้นหลังที่อ่อนลง */
   display: flex;
-  justify-content: space-between; /* ระยะห่างระหว่างคอลัมน์ */
-  height: calc(100vh - 50px); /* ความสูงเต็มหน้าจอลบด้วยความสูงของ header */
+  justify-content: space-between;
+  height: calc(100vh - 50px);
   width: 100%;
-  margin: 0; /* ไม่มี margin */
+  margin: 0;
+  border-radius: 5px; /* มุมโค้ง */
 }
 
 .col-3 {
   width: 25%;
-  padding: 20px; /* เพิ่ม padding */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* เงาเพื่อให้มองเห็นได้ดีขึ้น */
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #0078bf;
 }
 
 .col-sm-9 {
   width: 75%;
-  padding: 0; /* ไม่มี padding เพื่อให้ติดกับ header */
+  padding: 20px;
+  background-color: #ffffff; /* สีพื้นหลังที่อ่อนกว่า */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .table-container {
-  height: calc(100vh - 50px - 20px); /* ให้ตารางใช้ความสูงที่เหลือ */
-  overflow-y: auto; /* เลื่อนดูแนวตั้งภายในตาราง */
+  height: calc(100vh - 50px - 20px);
+  overflow-y: auto;
+  background-color: #ffffff; /* เปลี่ยนพื้นหลังเพื่อให้ตารางดูชัดเจน */
+  border-radius: 5px; /* มุมโค้ง */
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
-  margin: 10px 0 0 0; /* เพิ่มช่องว่างด้านบนของตาราง */
+  margin-top: 10px; /* เพิ่มช่องว่างด้านบน */
 }
 
 .table thead th {
   position: sticky;
-  top: 0; /* ทำให้มันติดอยู่ที่ด้านบน */
-  background-color: #f8f9fa; /* สีพื้นหลังของ header ตาราง */
-  z-index: 1; /* เพื่อให้แน่ใจว่ามันอยู่ด้านบน */
+  top: 0;
+  background-color: #0078bf; /* สีพื้นหลังของ header */
+  color: #ffffff; /* สีตัวอักษรใน header */
+  z-index: 1;
 }
 
-.table th, .table td {
+.table th,
+.table td {
   padding: 10px;
   text-align: center;
-  border-bottom: 1px solid #dee2e6; /* เส้นขอบแนวนอน */
+  border: 1px solid #dee2e6; /* เพิ่มขอบให้เซลล์ */
 }
 
 .table tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #f2f2f2; /* สีพื้นหลังแถวคู่ */
 }
 
 .table tbody tr:hover {
-  background-color: #e2e6ea;
+  background-color: #e0f7fa; /* สีพื้นหลังเมื่อวางเมาส์ */
 }
 
 .form-label {
@@ -73,12 +81,40 @@ body {
   width: 100%;
   padding: 5px;
   margin-bottom: 15px;
+  background-color: #0078bf;
+  color: #fff; /* เปลี่ยนสีตัวอักษร */
 }
 
 .bg-light {
-  background-color: #f8f9fa !important;
+  background-color: #0078bf !important;
+  color: aliceblue;
 }
 
 .text-center {
   text-align: center;
+}
+
+.square-back {
+  color: white; /* ตัวอักษรสีขาว */
+  margin-top: 45vh;
+}
+
+.btn-back {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 10px;
+  font-size: 17px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  background-color: #f8f9fa; /* สีพื้นหลังอ่อน */
+  color: #343a40; /* สีตัวอักษรเข้ม */
+  border: 1px solid #ced4da; /* เส้นกรอบสีอ่อน */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-back:hover {
+  background-color: #e2e6ea; /* สีพื้นหลังเมื่อชี้เมาส์ */
+  color: #212529; /* สีตัวอักษรเมื่อชี้เมาส์ */
 }

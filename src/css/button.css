@@ -3,6 +3,7 @@
   justify-content: center; 
   align-items: center; 
   height: 85vh ;
+  background-color: #0078bf;
 }
 
 .d-grid {
@@ -11,15 +12,18 @@
 }
 
 .btn {
+  /* color: #fff; */
   padding: 10px !important;
   font-size: 22px !important;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
   color: #000 !important;
   background-color: aliceblue !important; 
   transition: background-color 0.3s ease !important; 
+  /* color: aliceblue !important; */
 }
 
 .btn:hover {
   background-color: #1498d5 !important; 
   color: white !important; 
 }
+

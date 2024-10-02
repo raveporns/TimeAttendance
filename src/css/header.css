@@ -10,7 +10,7 @@
 }
 
 .bg-navbar {
-  background-color: aliceblue;
+  background-color: #1498d5(0, 78, 147);
 }
 
 img {
@@ -19,12 +19,12 @@ img {
   /* margin-top: 40px !important; */
 }
 
-.container-fluid{
+.container-fluid {
   display: flex;
   align-items: stretch !important;
 }
 
-a{
+a {
   margin-bottom: -10px;
 }
 
@@ -44,41 +44,75 @@ a{
 }
 
 .square {
-  width: 180px; 
-  height: 60px !important ; 
-  background-color: #0078bf; 
-  display: flex; 
-  border-radius: 30px; 
+  width: 180px;
+  height: 60px !important ;
+  background-color: #0078bf;
+  display: flex;
+  border-radius: 30px;
   justify-content: flex-end;
   flex-direction: row-reverse;
   align-items: center;
-  opacity: 80%;
 }
 
 .square i {
-  color: white; 
+  color: white;
   font-size: 30px;
   margin-left: 20px;
 }
 
 #signout {
-  color: #0078bf; 
-  font-size: 35px; 
-  cursor: pointer; 
+  color: #0078bf;
+  font-size: 35px;
+  cursor: pointer;
   padding: 15px !important;
   margin-bottom: 12px;
 }
 
 .icon-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-p{
-    font-size: 20px;
-    color: antiquewhite;
-    margin-top:15px !important ;
-    margin-left: 18px;
+p {
+  font-size: 20px;
+  color: antiquewhite;
+  margin-top: 15px !important ;
+  margin-left: 18px;
 }
 
+.square-logo {
+  width: 175px;
+  height: 130px;
+  margin-right: 20px;
+  background: aliceblue;
+  border-radius: 30px;
+}
+.square-position {
+  display: flex;
+  align-items: center; /* จัดกึ่งกลางในแนวตั้ง */
+  justify-content: space-between; /* แบ่งพื้นที่ระหว่างเด็กให้มากที่สุด */
+  flex-grow: 1; /* อนุญาตให้ขยายและเติมพื้นที่ที่มีอยู่ */
+}
+
+.square-title {
+  width: 75%;
+  height: 130px;
+  margin-right: 20px;
+  background: aliceblue;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* จัดกึ่งกลางเนื้อหาภายในแนวตั้ง */
+  align-items: center; /* จัดกึ่งกลางเนื้อหาภายในแนวนอน */
+}
+
+.square-icon {
+  width: 300px;
+  height: 130px;
+  background-color: aliceblue;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
