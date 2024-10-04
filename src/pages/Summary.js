@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/header";
 import "../css/summary.css";
-import monthData from "../mockup/mockup_summary";
 
 const Summary = () => {
   const [selectedYear, setSelectedYear] = useState("2023");
   const [selectedMonth, setSelectedMonth] = useState("");
-  const [searched, setSearched] = useState(false); // State to check if search button is clicked
+  const [searched, setSearched] = useState(false);
+  const [monthData, setMonthData] = useState([]); // State for fetched data
 
   const handleMonthChange = (event) => {
     setSelectedMonth(event.target.value);
@@ -19,10 +19,35 @@ const Summary = () => {
     setSearched(false); // Reset search state when year changes
   };
 
-  const handleSearch = () => {
-    setSearched(true); // Trigger search when button is clicked
+  const handleSearch = async () => {
+    if (!selectedMonth) {
+      alert("กรุณาเลือกเดือนเพื่อดูข้อมูล");
+      return;
+    }
+  
+    try {
+      const response = await fetch(
+        `http://localhost:8082/reports/${selectedYear}/${selectedMonth}`
+      );
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+      console.log("Data from API:", data); // ตรวจสอบค่าที่ได้รับจาก API
+  
+      if (data.length === 0) {
+        alert("ไม่พบข้อมูลสำหรับเดือนนี้");
+      } else {
+        setMonthData(data);
+      }
+      setSearched(true);
+    } catch (error) {
+      console.error("Error fetching reports:", error);
+    }
   };
-
+  
   const renderTableRows = () => {
     if (!searched) {
       return (
@@ -34,25 +59,25 @@ const Summary = () => {
       );
     }
 
-    if (!selectedMonth) {
+    if (monthData.length === 0) {
       return (
         <tr>
           <td colSpan="7" className="text-center">
-            กรุณาเลือกเดือนเพื่อดูข้อมูล
+            ไม่พบข้อมูลสำหรับเดือนนี้
           </td>
         </tr>
       );
     }
 
-    return monthData[selectedYear][selectedMonth].map((data, index) => (
+    return monthData.map((data, index) => (
       <tr key={index}>
-        <td>{data.empId}</td>
-        <td>{data.first}</td>
-        <td>{data.last}</td>
-        <td>{data.date}</td>
-        <td>{data.late}</td>
-        <td>{data.leave}</td>
-        <td>{data.overtime}</td>
+        <td>{data.employee_id}</td>
+        <td>{data.employee_name}</td>
+        <td>{data.employee_lastname}</td>
+        <td>{data.working_day.toFixed(2)}</td>
+        <td>{data.working_late.toFixed(2)}</td>
+        <td>{data.working_leave.toFixed(2)}</td>
+        <td>{data.working_OT.toFixed(2)}</td>
       </tr>
     ));
   };
@@ -89,17 +114,24 @@ const Summary = () => {
                 value={selectedMonth}
               >
                 <option value="">เลือกเดือน</option>
-                {Object.keys(monthData[selectedYear]).map((month) => (
-                  <option key={month} value={month}>
-                    {month}
-                  </option>
-                ))}
+                <option value="1">มกราคม</option>
+                <option value="2">กุมภาพันธ์</option>
+                <option value="3">มีนาคม</option>
+                <option value="4">เมษายน</option>
+                <option value="5">พฤษภาคม</option>
+                <option value="6">มิถุนายน</option>
+                <option value="7">กรกฎาคม</option>
+                <option value="8">สิงหาคม</option>
+                <option value="9">กันยายน</option>
+                <option value="10">ตุลาคม</option>
+                <option value="11">พฤศจิกายน</option>
+                <option value="12">ธันวาคม</option>
+                <option value="13">ทั้งหมด</option>
               </select>
             </div>
 
             {/* ปุ่มค้นหา */}
             <div className="mb-3">
-              
               <button className="btn-back" onClick={handleSearch}>
                 ค้นหา
               </button>

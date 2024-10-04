@@ -58,7 +58,10 @@ func main() {
 	})
 
 	// เส้นทางสำหรับดึงรายงาน
-	router.GET("/reports/:year/:month", reportController.GetReports)
+	router.GET("/reports/all", reportController.GetReportsAll)
+	// router.GET("/reports/:year/:month", reportController.GetMonthlyReport)
+	router.GET("/report/:year/:month", reportController.GetReports)
+
 
 	log.Println("Server starting on :8082")
 	if err := router.Run(":8082"); err != nil {
