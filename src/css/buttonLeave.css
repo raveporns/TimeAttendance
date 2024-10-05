@@ -1,0 +1,41 @@
+.btn-allLeave {
+  display: flex;
+  flex-direction: column; /* จัดปุ่มให้อยู่ในแนวตั้ง */
+  justify-content: flex-start; /* จัดให้อยู่ชิดด้านบน */
+  align-items: center; /* จัดให้อยู่ตรงกลางในแนวนอน */
+  height: 85vh;
+  background-color: #0078bf;
+  padding-top: 20px;
+}
+
+.d-grid {
+  display: flex;
+  flex-direction: column; /* จัดปุ่มให้อยู่ในแนวตั้ง */
+  width: 80%;
+  height: auto;
+}
+
+.btn-leave {
+  padding: 15px 25px !important;
+  font-size: 20px !important;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: #000 !important;
+  background-color: aliceblue !important;
+  border: none;
+  border-radius: 8px; /* เพิ่มมุมโค้ง */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* เพิ่มเงา */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  margin-bottom: 20px; /* เพิ่มช่องว่างระหว่างปุ่ม */
+  text-decoration: none; /* เอาเส้นใต้ข้อความออก */
+}
+
+.btn-leave:hover {
+  background-color: #1498d5 !important;
+  color: white !important;
+  transform: translateY(-3px); /* เพิ่มเอฟเฟกต์ยกปุ่มขึ้น */
+}
+
+.btn-leave:active {
+  transform: translateY(1px); /* เอฟเฟกต์ยุบปุ่มเมื่อคลิก */
+}
