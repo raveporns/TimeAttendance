@@ -37,6 +37,6 @@ form {
   p {
     margin-top: 20px;
     font-size: 18px;
-    color: green;
+    /* color: green; */
     text-align: center;
   }

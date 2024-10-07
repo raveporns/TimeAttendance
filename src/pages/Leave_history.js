@@ -15,7 +15,7 @@ const Leave_history = () => {
                             <Link to="/leave" className="btn-leave">
                                 การลา
                             </Link>
-                            <Link to="/leave_history" className="btn-leave">
+                            <Link to="/leave/history" className="btn-leave">
                                 การลาทั้งหมด
                             </Link>
                             <Link to="/home" className="btn-leave">
