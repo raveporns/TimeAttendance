@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "../css/header.css";
 import "../css/button.css";
-import "../css/leave.css";
+import "../css/ot.css";
 import Header from "../components/header";
 import { Link } from "react-router-dom";
 
-const Leave = () => {
+const overtime = () => {
 
   const [leaveDetails, setLeaveDetails] = useState({
     reason: "",
@@ -40,10 +40,10 @@ const Leave = () => {
         <div className="col-3 bg-light p-3 border">
           <div className="btn-allLeave">
             <div className="d-grid">
-              <Link to="/leave" className="btn-leave">
+              <Link to="/overtime" className="btn-leave">
                 การลา
               </Link>
-              <Link to="/leave/history" className="btn-leave">
+              <Link to="/overtime/history" className="btn-leave">
                 การลาทั้งหมด
               </Link>
               <Link to="/home" className="btn-leave">
@@ -62,7 +62,7 @@ const Leave = () => {
                 type="text"
                 id="reason"
                 name="reason"
-                value={leaveDetails.reason}
+                value={overtimeDetails.reason}
                 onChange={handleChange}
                 required
               />
@@ -73,7 +73,7 @@ const Leave = () => {
                 type="date"
                 id="startDate"
                 name="startDate"
-                value={leaveDetails.startDate}
+                value={overtimeDetails.startDate}
                 onChange={handleChange}
                 required
               />
@@ -84,7 +84,7 @@ const Leave = () => {
                 type="date"
                 id="endDate"
                 name="endDate"
-                value={leaveDetails.endDate}
+                value={overtimeDetails.endDate}
                 onChange={handleChange}
                 required
               />
@@ -101,4 +101,4 @@ const Leave = () => {
   );
 };
 
-export default Leave;
+export default overtime;

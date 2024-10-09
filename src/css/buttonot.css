@@ -1,4 +1,4 @@
-.btn-allLeave {
+.btn-allovertime {
   display: flex;
   flex-direction: column; /* จัดปุ่มให้อยู่ในแนวตั้ง */
   justify-content: flex-start; /* จัดให้อยู่ชิดด้านบน */
@@ -15,7 +15,7 @@
   height: auto;
 }
 
-.btn-leave {
+.btn-overtime {
   padding: 15px 25px !important;
   font-size: 20px !important;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -30,12 +30,12 @@
   text-decoration: none; /* เอาเส้นใต้ข้อความออก */
 }
 
-.btn-leave:hover {
+.btn-overtime:hover {
   background-color: #1498d5 !important;
   color: white !important;
   transform: translateY(-3px); /* เพิ่มเอฟเฟกต์ยกปุ่มขึ้น */
 }
 
-.btn-leave:active {
+.btn-overtime:active {
   transform: translateY(1px); /* เอฟเฟกต์ยุบปุ่มเมื่อคลิก */
 }

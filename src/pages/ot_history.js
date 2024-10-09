@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../css/header.css";
-import "../css/buttonLeave.css";
+import "../css/buttonot.css";
 import Header from "../components/header";
-const Leave_history = () => {
+const overtime_history = () => {
     return (
         <div>
             <Header />
@@ -15,7 +15,7 @@ const Leave_history = () => {
                             <Link to="/leave" className="btn-leave">
                                 การลา
                             </Link>
-                            <Link to="/leave/history" className="btn-leave">
+                            <Link to="/leave_history" className="btn-leave">
                                 การลาทั้งหมด
                             </Link>
                             <Link to="/home" className="btn-leave">
@@ -50,4 +50,4 @@ const Leave_history = () => {
     );
 };
 
-export default Leave_history;
+export default overtime_history;
