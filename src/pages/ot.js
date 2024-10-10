@@ -7,29 +7,29 @@ import { Link } from "react-router-dom";
 
 const overtime = () => {
 
-  const [leaveDetails, setLeaveDetails] = useState({
-    reason: "",
-    startDate: "",
-    endDate: "",
-  });
+  // const [otDetails, setOTDetails] = useState({
+  //   reason: "",
+  //   startDate: "",
+  //   endDate: "",
+  // });
 
   // State for success message
-  const [submitted, setSubmitted] = useState(false);
+  // const [submitted, setSubmitted] = useState(false);
 
   // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setLeaveDetails((prevDetails) => ({
-      ...prevDetails,
-      [name]: value,
-    }));
+    // setOTDetails((prevDetails) => ({
+    //   ...prevDetails,
+    //   [name]: value,
+    // }));
   };
 
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitted(true); // Display the success message after form submission
-    console.log(leaveDetails); // Log the details, could be sent to backend here
+    // setSubmitted(true); // Display the success message after form submission
+    // console.log(leaveDetails); // Log the details, could be sent to backend here
   };
 
   return (
@@ -62,7 +62,7 @@ const overtime = () => {
                 type="text"
                 id="reason"
                 name="reason"
-                value={overtimeDetails.reason}
+                // value={overtimeDetails.reason}
                 onChange={handleChange}
                 required
               />
@@ -73,7 +73,7 @@ const overtime = () => {
                 type="date"
                 id="startDate"
                 name="startDate"
-                value={overtimeDetails.startDate}
+                // value={overtimeDetails.startDate}
                 onChange={handleChange}
                 required
               />
@@ -84,7 +84,7 @@ const overtime = () => {
                 type="date"
                 id="endDate"
                 name="endDate"
-                value={overtimeDetails.endDate}
+                // value={overtimeDetails.endDate}
                 onChange={handleChange}
                 required
               />
@@ -95,8 +95,8 @@ const overtime = () => {
       </div>
       <h1></h1>
 
-
-      {submitted && <p>Your leave request has been submitted!</p>}
+      {/* submitted &&  */}
+      {<p>Your leave request has been submitted!</p>}
     </div>
   );
 };
