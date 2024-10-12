@@ -10,7 +10,7 @@ const Button = () => {
           การเข้า-ออกงาน
         </Link>
         <Link to="/leave" className="btn">
-          การลา
+          บันทึกการทำงานล่วงเวลา
         </Link>
         <Link to="/summary" className="btn">
           การรายงานผล
