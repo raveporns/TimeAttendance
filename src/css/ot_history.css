@@ -1,0 +1,54 @@
+.ot-his-content{
+    display: flex;
+}
+
+.history-content {
+   width: 80%;
+    
+}
+
+.col-sm-9 {
+  width: 75%;
+  padding: 20px;
+  background-color: #ffffff; /* สีพื้นหลังที่อ่อนกว่า */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ot-container {
+    background-color: #ffffff; /* สีพื้นหลัง */
+    /* display: flex; */
+    justify-content: center; /* จัดให้อยู่กลางแนวนอน */
+    align-items: center; /* จัดให้อยู่กลางแนวตั้ง */
+    height: 100vh; /* กำหนดความสูงเต็มหน้าจอ */
+    width: 100%;
+    margin-top: 30px;
+    border-radius: 5px; /* มุมโค้ง */
+  }
+  
+  .btn-othis {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    background-color: #f8f9fa; /* สีพื้นหลังอ่อน */
+    color: #343a40; /* สีตัวอักษรเข้ม */
+    border: 1px solid #ced4da; /* เส้นกรอบสีอ่อน */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+    margin-bottom: 30px;
+  }
+  
+  .btn-othis:hover {
+    background-color: #e2e6ea; /* สีพื้นหลังเมื่อชี้เมาส์ */
+    color: #212529; /* สีตัวอักษรเมื่อชี้เมาส์ */
+  }
+  
+  .navigation-links-othis {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  

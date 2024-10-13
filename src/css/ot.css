@@ -14,8 +14,11 @@ body {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-h1, h2 {
+h1,
+h2 {
   text-align: center;
+  color: black !important;
+  font-size: 30px !important;
 }
 
 form {
@@ -38,7 +41,7 @@ textarea {
 }
 
 button {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   padding: 10px;
   border: none;
@@ -58,7 +61,8 @@ table {
   margin-top: 20px;
 }
 
-th, td {
+th,
+td {
   border: 1px solid #ccc;
   padding: 10px;
   text-align: left;
@@ -73,12 +77,12 @@ input[type="checkbox"] {
 }
 
 .editButton {
-  background-color: #008CBA;
+  background-color: #008cba;
   margin-right: 5px;
 }
 
 .editButton:hover {
-  background-color: #007B9A;
+  background-color: #007b9a;
 }
 
 .deleteButton {
@@ -88,3 +92,43 @@ input[type="checkbox"] {
 .deleteButton:hover {
   background-color: #d32f2f;
 }
+
+
+
+.ot-container {
+  background-color: #ffffff; /* สีพื้นหลัง */
+  /* display: flex; */
+  justify-content: center; /* จัดให้อยู่กลางแนวนอน */
+  align-items: center; /* จัดให้อยู่กลางแนวตั้ง */
+  height: 100vh; /* กำหนดความสูงเต็มหน้าจอ */
+  width: 100%;
+  margin-top: 30px;
+  border-radius: 5px; /* มุมโค้ง */
+}
+
+.btn-ot {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 17px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  background-color: #f8f9fa; /* สีพื้นหลังอ่อน */
+  color: #343a40; /* สีตัวอักษรเข้ม */
+  border: 1px solid #ced4da; /* เส้นกรอบสีอ่อน */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+.btn-ot:hover {
+  background-color: #e2e6ea; /* สีพื้นหลังเมื่อชี้เมาส์ */
+  color: #212529; /* สีตัวอักษรเมื่อชี้เมาส์ */
+}
+
+.navigation-links-ot {
+  display: flex;
+  flex-direction: column;
+}
+
