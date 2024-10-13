@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react"; 
-import { useLocation, Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";   
+import { useLocation, Link } from "react-router-dom";
 import mockOvertimeEntries from "../mockup/mockup_ot_history";
 import Header from "../components/header";
 import "../css/header.css";
@@ -8,11 +8,11 @@ import "../css/ot_history.css";
 
 const OvertimeHistory = () => {
   const location = useLocation();
-  const navigate = useNavigate(); // เพิ่มการกำหนด navigate
-  const { overtimeEntries } = location.state || { overtimeEntries: [] }; // ตรวจสอบข้อมูล
+  const { overtimeEntries } = location.state || { overtimeEntries: [] };
 
   // ใช้ข้อมูล mock-up หากไม่มีข้อมูล
   const [entries, setEntries] = useState(overtimeEntries.length > 0 ? overtimeEntries : mockOvertimeEntries);
+  const [editEntryId, setEditEntryId] = useState(null); // ID ของข้อมูลที่กำลังจะแก้ไข
 
   // ฟังก์ชันสำหรับลบข้อมูล
   const handleDelete = (id) => {
@@ -21,9 +21,24 @@ const OvertimeHistory = () => {
     alert(`ลบข้อมูลที่ ID: ${id}`);
   };
 
-  // ฟังก์ชันสำหรับแก้ไขข้อมูล
+  // ฟังก์ชันสำหรับเริ่มการแก้ไขข้อมูล
   const handleEdit = (id) => {
-    navigate(`/overtime/edit/${id}`); // เปลี่ยนเส้นทางไปยังหน้าที่เหมาะสม
+    setEditEntryId(id); // ตั้งค่า ID ของข้อมูลที่กำลังจะแก้ไข
+  };
+
+  // ฟังก์ชันสำหรับบันทึกการแก้ไข
+  const handleSaveEdit = () => {
+    setEditEntryId(null); // รีเซ็ต ID ของการแก้ไข
+  };
+
+  // ฟังก์ชันสำหรับการเปลี่ยนแปลงข้อมูลในฟอร์มแก้ไข
+  const handleChange = (e, id) => {
+    const { name, value } = e.target;
+    setEntries((prevEntries) =>
+      prevEntries.map((entry) => 
+        entry.id === id ? { ...entry, [name]: value } : entry // สร้างอ็อบเจกต์ใหม่สำหรับแถวที่กำลังแก้ไข
+      )
+    );
   };
 
   return (
@@ -58,17 +73,88 @@ const OvertimeHistory = () => {
             <tbody>
               {entries.length > 0 ? (
                 entries.map((entry) => (
-                  <tr key={entry.id}> {/* ใช้ entry.id แทน index */}
-                    <td>{entry.employeeName}</td>
-                    <td>{entry.date}</td>
-                    <td>{entry.startTime}</td>
-                    <td>{entry.endTime}</td>
-                    <td>{entry.totalTime}</td>
-                    <td>{entry.details}</td>
-                    <td>
-                      <button className="editButton" onClick={() => handleEdit(entry.id)}>แก้ไข</button>
-                      <button className="deleteButton" onClick={() => handleDelete(entry.id)}>ลบ</button>
-                    </td>
+                  <tr key={entry.id}>
+                    {editEntryId === entry.id ? ( // เช็คว่าอยู่ในโหมดแก้ไขหรือไม่
+                      <>
+                        <td>
+                          <input
+                            type="text"
+                            name="employeeName"
+                            value={entry.employeeName}
+                            onChange={(e) => handleChange(e, entry.id)}
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="date"
+                            name="date"
+                            value={entry.date}
+                            onChange={(e) => handleChange(e, entry.id)}
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="time"
+                            name="startTime"
+                            value={entry.startTime}
+                            onChange={(e) => handleChange(e, entry.id)}
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="time"
+                            name="endTime"
+                            value={entry.endTime}
+                            onChange={(e) => handleChange(e, entry.id)}
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            name="totalTime"
+                            value={entry.totalTime}
+                            onChange={(e) => handleChange(e, entry.id)}
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            name="details"
+                            value={entry.details}
+                            onChange={(e) => handleChange(e, entry.id)}
+                          />
+                        </td>
+                        <td>
+                          <button className="saveButton" onClick={handleSaveEdit}>บันทึก</button>
+                          <button 
+                            style={{
+                              backgroundColor: 'red', // สีพื้นหลังของปุ่ม
+                              color: 'white', // สีตัวอักษร
+                              border: 'none', // ไม่มีขอบ
+                              padding: '8px 16px', // ขนาดของปุ่ม
+                              cursor: 'pointer', // เปลี่ยนเคอร์เซอร์เมื่อชี้ไปที่ปุ่ม
+                              borderRadius: '4px', // มุมปุ่มโค้งมน
+                            }} 
+                            onClick={() => setEditEntryId(null)}
+                          >
+                            ยกเลิก
+                          </button>
+                        </td>
+                      </>
+                    ) : (
+                      <>
+                        <td>{entry.employeeName}</td>
+                        <td>{entry.date}</td>
+                        <td>{entry.startTime}</td>
+                        <td>{entry.endTime}</td>
+                        <td>{entry.totalTime}</td>
+                        <td>{entry.details}</td>
+                        <td>
+                          <button className="editButton" onClick={() => handleEdit(entry.id)}>แก้ไข</button>
+                          <button className="deleteButton" onClick={() => handleDelete(entry.id)}>ลบ</button>
+                        </td>
+                      </>
+                    )}
                   </tr>
                 ))
               ) : (
