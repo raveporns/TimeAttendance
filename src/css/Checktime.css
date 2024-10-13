@@ -1,0 +1,28 @@
+.action-buttons {
+    display: flex; /* จัดปุ่มในแนวนอน */
+    justify-content: space-between; /* ให้ปุ่มอยู่ทางซ้ายและขวา */
+    margin-top: 20px; /* ระยะห่างด้านบนของปุ่ม */
+    width: 300px; /* กำหนดความกว้างรวมของปุ่ม */
+    margin-left: auto; /* จัดกลางในแนวนอน */
+    margin-right: auto; /* จัดกลางในแนวนอน */
+  }
+  
+  .check-in-button, .check-out-button {
+    font-size: 16px; /* ขนาดฟอนต์ที่ใหญ่ขึ้น */
+    padding: 10px 20px; /* เพิ่มระยะห่างภายในปุ่ม */
+    margin: 0 10px; /* เพิ่มช่องไฟด้านข้าง */
+    border: none;
+    border-radius: 5px;
+    flex: 1; /* ทำให้ปุ่มขยายเต็มพื้นที่ */
+  }
+  
+  .check-in-button {
+    background-color: #008cba; /* สีของปุ่มเข้างาน */
+    color: white; /* สีของตัวหนังสือ */
+  }
+  
+  .check-out-button {
+    background-color: #f0ad4e; /* สีของปุ่มเลิกงาน */
+    color: white; /* สีของตัวหนังสือ */
+  }
+  
