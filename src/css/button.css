@@ -27,3 +27,23 @@
   color: white !important; 
 }
 
+/* In button.css or a relevant CSS file */
+.navigation-links {
+  display: flex; /* Aligns the links in a row */
+  justify-content: center; /* Centers the links horizontally */
+  margin: 20px 0; /* Adds some spacing around the links */
+}
+
+.btn-leave {
+  background-color: #007bff; /* Bootstrap primary color for a button look */
+  color: white; /* White text */
+  padding: 10px 20px; /* Padding for better clickability */
+  margin: 0 10px; /* Space between buttons */
+  text-decoration: none; /* Removes underline from links */
+  border-radius: 4px; /* Rounds the corners of the button */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.btn-leave:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
