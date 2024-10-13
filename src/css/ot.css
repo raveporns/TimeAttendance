@@ -1,134 +1,54 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
-  margin: 0;
+.ot-his-content{
+    display: flex;
+}
+
+.history-content {
+   width: 80%;
+    
+}
+
+.col-sm-9 {
+  width: 75%;
   padding: 20px;
+  background-color: #ffffff; /* สีพื้นหลังที่อ่อนกว่า */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
-.container {
-  max-width: 600px;
-  margin: auto;
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-h1,
-h2 {
-  text-align: center;
-  color: black !important;
-  font-size: 30px !important;
-}
-
-form {
-  margin-bottom: 20px;
-}
-
-label {
-  display: block;
-  margin: 10px 0 5px;
-}
-
-input[type="text"],
-input[type="datetime-local"],
-textarea {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-button {
-  background-color: #4caf50;
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  width: 100%;
-  margin-bottom: 5px;
-}
-
-button:hover {
-  background-color: #45a049;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-th,
-td {
-  border: 1px solid #ccc;
-  padding: 10px;
-  text-align: left;
-}
-
-th {
-  background-color: #f4f4f4;
-}
-
-input[type="checkbox"] {
-  cursor: pointer;
-}
-
-.editButton {
-  background-color: #008cba;
-  margin-right: 5px;
-}
-
-.editButton:hover {
-  background-color: #007b9a;
-}
-
-.deleteButton {
-  background-color: #f44336;
-}
-
-.deleteButton:hover {
-  background-color: #d32f2f;
-}
-
-
 
 .ot-container {
-  background-color: #ffffff; /* สีพื้นหลัง */
-  /* display: flex; */
-  justify-content: center; /* จัดให้อยู่กลางแนวนอน */
-  align-items: center; /* จัดให้อยู่กลางแนวตั้ง */
-  height: 100vh; /* กำหนดความสูงเต็มหน้าจอ */
-  width: 100%;
-  margin-top: 30px;
-  border-radius: 5px; /* มุมโค้ง */
-}
-
-.btn-ot {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 17px;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  border-radius: 5px;
-  background-color: #f8f9fa; /* สีพื้นหลังอ่อน */
-  color: #343a40; /* สีตัวอักษรเข้ม */
-  border: 1px solid #ced4da; /* เส้นกรอบสีอ่อน */
-  transition: background-color 0.3s ease, color 0.3s ease;
-  cursor: pointer;
-  margin-bottom: 30px;
-}
-
-.btn-ot:hover {
-  background-color: #e2e6ea; /* สีพื้นหลังเมื่อชี้เมาส์ */
-  color: #212529; /* สีตัวอักษรเมื่อชี้เมาส์ */
-}
-
-.navigation-links-ot {
-  display: flex;
-  flex-direction: column;
-}
-
+    background-color: #ffffff; /* สีพื้นหลัง */
+    /* display: flex; */
+    justify-content: center; /* จัดให้อยู่กลางแนวนอน */
+    align-items: center; /* จัดให้อยู่กลางแนวตั้ง */
+    height: 100vh; /* กำหนดความสูงเต็มหน้าจอ */
+    width: 100%;
+    margin-top: 30px;
+    border-radius: 5px; /* มุมโค้ง */
+  }
+  
+  .btn-othis {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    background-color: #f8f9fa; /* สีพื้นหลังอ่อน */
+    color: #343a40; /* สีตัวอักษรเข้ม */
+    border: 1px solid #ced4da; /* เส้นกรอบสีอ่อน */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+    margin-bottom: 30px;
+  }
+  
+  .btn-othis:hover {
+    background-color: #e2e6ea; /* สีพื้นหลังเมื่อชี้เมาส์ */
+    color: #212529; /* สีตัวอักษรเมื่อชี้เมาส์ */
+  }
+  
+  .navigation-links-othis {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  

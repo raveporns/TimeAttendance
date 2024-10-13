@@ -1,155 +1,74 @@
-import React, { useState } from "react";
-import "../css/header.css";
-import "../css/button.css"; // Ensure this file includes the styles above
-import "../css/ot_history.css";
-import { Link } from "react-router-dom";
+import React from "react";
+import { useLocation, Link } from "react-router-dom";
 import Header from "../components/header";
+import "../css/header.css";
+import "../css/button.css";
+import "../css/ot_history.css";
 
 const OvertimeHistory = () => {
-  const [overtimeEntries, setOvertimeEntries] = useState([]);
-  const [employeeName, setEmployeeName] = useState("");
-  const [startTime, setStartTime] = useState("");
-  const [endTime, setEndTime] = useState("");
-  const [details, setDetails] = useState("");
+  const location = useLocation();
+  const { overtimeEntries } = location.state || { overtimeEntries: [] }; // ตรวจสอบข้อมูล
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (employeeName && startTime && endTime) {
-      const newEntry = { employeeName, startTime, endTime, details };
-      setOvertimeEntries([...overtimeEntries, newEntry]);
-      setEmployeeName("");
-      setStartTime("");
-      setEndTime("");
-      setDetails("");
-    } else {
-      alert("กรุณากรอกข้อมูลให้ครบถ้วน!");
-    }
-  };
-
-  const handleEdit = (index) => {
-    const entry = overtimeEntries[index];
-    setEmployeeName(entry.employeeName);
-    setStartTime(entry.startTime);
-    setEndTime(entry.endTime);
-    setDetails(entry.details);
-
-    const updatedEntries = overtimeEntries.filter((_, i) => i !== index);
-    setOvertimeEntries(updatedEntries);
-  };
-
+  // ฟังก์ชันสำหรับลบข้อมูล
   const handleDelete = (index) => {
-    const updatedEntries = overtimeEntries.filter((_, i) => i !== index);
-    setOvertimeEntries(updatedEntries);
+    alert(`ลบข้อมูลที่ ${index}`);
   };
 
-  const styles = {
-    formContainer: {
-      border: "2px solid #ccc",
-      padding: "20px",
-      borderRadius: "8px",
-      marginBottom: "20px",
-      backgroundColor: "#f9f9f9",
-    },
-    label: {
-      display: "block",
-      margin: "10px 0 5px",
-    },
-    input: {
-      width: "100%",
-      padding: "8px",
-      marginBottom: "10px",
-      border: "1px solid #ccc",
-      borderRadius: "4px",
-    },
-    button: {
-      backgroundColor: "#4CAF50",
-      color: "white",
-      padding: "10px",
-      border: "none",
-      borderRadius: "4px",
-      cursor: "pointer",
-      width: "100%",
-      marginBottom: "5px",
-    },
+  // ฟังก์ชันสำหรับแก้ไขข้อมูล
+  const handleEdit = (index) => {
+    alert(`แก้ไขข้อมูลที่ ${index}`);
   };
 
   return (
     <div>
       <Header />
-      <div className="ot-his-content">
+      <div className="d-flex">
         <div className="col-3 bg-light p-3 border">
-          <div className="navigation-links-othis">
-            <Link to="/ot" className="btn-othis">
-              การทํางานล่วงเวลา
-            </Link>
-            <Link to="/othistory" className="btn-othis">
-              ข้อมูลการทํางานล่วงเวลา
-            </Link>
-            <Link to="/home" className="btn-othis">
-              กลับสู่หน้าหลัก
-            </Link>
+          <div className="ot-container">
+            <div className="navigation-links-ot">
+              <Link to="/ot" className="btn-ot">การทำงานล่วงเวลา</Link>
+              <Link to="/othistory" className="btn-ot">ข้อมูลการทำงานล่วงเวลา</Link>
+              <Link to="/home" className="btn-ot">กลับสู่หน้าหลัก</Link>
+            </div>
           </div>
         </div>
 
-
-          <div className="col-sm-9 bg-light p-3 border">
-            <div style={styles.formContainer}>
-              <form onSubmit={handleSubmit}>
-                <h1>บันทึกการทำงานล่วงเวลา</h1>
-                <label htmlFor="employeeName" style={styles.label}>
-                  ชื่อพนักงาน:
-                </label>
-                <input
-                  type="text"
-                  id="employeeName"
-                  value={employeeName}
-                  onChange={(e) => setEmployeeName(e.target.value)}
-                  required
-                  style={styles.input}
-                />
-
-                <label htmlFor="startTime" style={styles.label}>
-                  วันและเวลาเริ่มต้น:
-                </label>
-                <input
-                  type="datetime-local"
-                  id="startTime"
-                  value={startTime}
-                  onChange={(e) => setStartTime(e.target.value)}
-                  required
-                  style={styles.input}
-                />
-
-                <label htmlFor="endTime" style={styles.label}>
-                  วันและเวลาสิ้นสุด:
-                </label>
-                <input
-                  type="datetime-local"
-                  id="endTime"
-                  value={endTime}
-                  onChange={(e) => setEndTime(e.target.value)}
-                  required
-                  style={styles.input}
-                />
-
-                <label htmlFor="details" style={styles.label}>
-                  รายละเอียด:
-                </label>
-                <textarea
-                  id="details"
-                  rows="3"
-                  value={details}
-                  onChange={(e) => setDetails(e.target.value)}
-                  style={styles.input}
-                />
-
-                <button type="submit" style={styles.button}>
-                  บันทึกการทำงานล่วงเวลา
-                </button>
-              </form>
-
-          </div>
+        {/* ตารางแสดงข้อมูลการทำงานล่วงเวลา */}
+        <div className="col-sm-9 bg-light p-3 border">
+          <h2 className="table-title">ข้อมูลการทำงานล่วงเวลา</h2>
+          <table className="overtime-table">
+            <thead>
+              <tr>
+                <th>ชื่อพนักงาน</th>
+                <th>เริ่มต้น</th>
+                <th>สิ้นสุด</th>
+                <th>รายละเอียด</th>
+                <th>จัดการ</th> {/* เพิ่มหัวข้อจัดการ */}
+              </tr>
+            </thead>
+            <tbody>
+              {overtimeEntries.length > 0 ? (
+                overtimeEntries.map((entry, index) => (
+                  <tr key={index}>
+                    <td>{entry.employeeName}</td>
+                    <td>{entry.startTime}</td>
+                    <td>{entry.endTime}</td>
+                    <td>{entry.details}</td>
+                    <td>
+                      <button className="editButton" onClick={() => handleEdit(index)}>แก้ไข</button>
+                      <button className="deleteButton" onClick={() => handleDelete(index)}>ลบ</button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="5" className="no-data">
+                    ไม่มีข้อมูลการทำงานล่วงเวลา
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
