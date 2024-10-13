@@ -21,11 +21,12 @@ func main() {
 	dbUser := os.Getenv("MYSQL_USER")
 	dbPassword := os.Getenv("MYSQL_PASSWORD")
 	dbName := os.Getenv("MYSQL_DATABASE")
-	dbHost := os.Getenv("MYSQL_HOST")
+	// dbHost := os.Getenv("MYSQL_HOST")
 	dbPort := os.Getenv("MYSQL_PORT")
 
 	// สร้าง DSN สำหรับเชื่อมต่อกับฐานข้อมูล
-	dsn := dbUser + ":" + dbPassword + "@tcp(" + dbHost + ":" + dbPort + ")/" + dbName
+	dsn := dbUser + ":" + dbPassword + "@tcp(127.0.0.1:" + dbPort + ")/" + dbName
+
 
 	// เชื่อมต่อกับฐานข้อมูล
 	db, err := sql.Open("mysql", dsn)
@@ -43,8 +44,9 @@ func main() {
 		log.Fatalf("Database connection failed: %v", err)
 	}
 
-	// สร้าง ReportController
+	// สร้าง ReportController และ OvertimeController
 	reportController := &controller.ReportController{DB: db}
+	overtimeController := &controller.OvertimeController{DB: db}
 
 	// สร้าง Gin router
 	router := gin.Default()
@@ -53,15 +55,20 @@ func main() {
 	router.Use(func(c *gin.Context) {
 		c.Header("Access-Control-Allow-Origin", "*")
 		c.Header("Access-Control-Allow-Headers", "Content-Type")
-		c.Header("Access-Control-Allow-Methods", "GET")
+		c.Header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
 		c.Next()
 	})
 
 	// เส้นทางสำหรับดึงรายงาน
 	router.GET("/reports/all", reportController.GetReportsAll)
-	// router.GET("/reports/:year/:month", reportController.GetMonthlyReport)
 	router.GET("/report/:year/:month", reportController.GetReports)
 
+	// เส้นทางสำหรับการจัดการ overtime
+	router.POST("/overtime", overtimeController.AddOvertime)
+	router.GET("/overtime/:id", overtimeController.GetOvertimeByID)
+	router.PUT("/overtime/:id", overtimeController.UpdateOvertime)
+	router.DELETE("/overtime/:id", overtimeController.DeleteOvertime)
+	router.GET("/overtime/all", overtimeController.GetAllOvertime)
 
 	log.Println("Server starting on :8082")
 	if err := router.Run(":8082"); err != nil {

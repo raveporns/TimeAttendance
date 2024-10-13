@@ -1,5 +1,6 @@
-import React from "react";
-import { useLocation, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation, Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import Header from "../components/header";
 import "../css/header.css";
 import "../css/button.css";
@@ -7,16 +8,37 @@ import "../css/ot_history.css";
 
 const OvertimeHistory = () => {
   const location = useLocation();
-  const { overtimeEntries } = location.state || { overtimeEntries: [] }; // ตรวจสอบข้อมูล
+  const [entries, setEntries] = useState([]);
+  const navigate = useNavigate(); // เพิ่มการนำทาง
+
+  // ดึงข้อมูลการทำงานล่วงเวลาทั้งหมดเมื่อ component ถูก mount
+  useEffect(() => {
+    const fetchOvertimeEntries = async () => {
+      try {
+        const response = await axios.get("http://localhost:8082/overtime/all");
+        setEntries(response.data);
+      } catch (error) {
+        console.error("Error fetching overtime entries:", error);
+      }
+    };
+
+    fetchOvertimeEntries();
+  }, []);
 
   // ฟังก์ชันสำหรับลบข้อมูล
-  const handleDelete = (index) => {
-    alert(`ลบข้อมูลที่ ${index}`);
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:8082/overtime/${id}`);
+      setEntries(prevEntries => prevEntries.filter(entry => entry.id !== id)); // อัปเดต state
+      alert(`ลบข้อมูลที่ ID: ${id}`);
+    } catch (error) {
+      console.error("Error deleting entry:", error);
+    }
   };
 
   // ฟังก์ชันสำหรับแก้ไขข้อมูล
-  const handleEdit = (index) => {
-    alert(`แก้ไขข้อมูลที่ ${index}`);
+  const handleEdit = (id) => {
+    navigate(`/overtime/edit/${id}`); // เปลี่ยนเส้นทางไปยังหน้าที่เหมาะสม
   };
 
   return (
@@ -40,29 +62,33 @@ const OvertimeHistory = () => {
             <thead>
               <tr>
                 <th>ชื่อพนักงาน</th>
-                <th>เริ่มต้น</th>
-                <th>สิ้นสุด</th>
+                <th>วันที่</th>
+                <th>เวลาเริ่มต้น</th>
+                <th>เวลาสิ้นสุด</th>
+                <th>รวมเวลาทั้งหมด</th>
                 <th>รายละเอียด</th>
-                <th>จัดการ</th> {/* เพิ่มหัวข้อจัดการ */}
+                <th>จัดการ</th> 
               </tr>
             </thead>
             <tbody>
-              {overtimeEntries.length > 0 ? (
-                overtimeEntries.map((entry, index) => (
-                  <tr key={index}>
+              {entries.length > 0 ? (
+                entries.map((entry) => (
+                  <tr key={entry.id}>
                     <td>{entry.employeeName}</td>
-                    <td>{entry.startTime}</td>
-                    <td>{entry.endTime}</td>
-                    <td>{entry.details}</td>
+                    <td>{entry.date}</td>
+                    <td>{entry.start_time}</td>
+                    <td>{entry.end_time}</td>
+                    <td>{entry.totalTime}</td>
+                    <td>{entry.note}</td>
                     <td>
-                      <button className="editButton" onClick={() => handleEdit(index)}>แก้ไข</button>
-                      <button className="deleteButton" onClick={() => handleDelete(index)}>ลบ</button>
+                      <button className="editButton" onClick={() => handleEdit(entry.id)}>แก้ไข</button>
+                      <button className="deleteButton" onClick={() => handleDelete(entry.id)}>ลบ</button>
                     </td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan="5" className="no-data">
+                  <td colSpan="7" className="no-data">
                     ไม่มีข้อมูลการทำงานล่วงเวลา
                   </td>
                 </tr>

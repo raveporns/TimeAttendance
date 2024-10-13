@@ -51,4 +51,13 @@
     flex-direction: column;
   }
   
-  
+  .btn-ot-content{
+    display: flex;
+  }
+
+  label {
+    color: #212529;
+    font-size: 18px;
+    margin-bottom: 5px;
+    text-align: left !important;
+}
