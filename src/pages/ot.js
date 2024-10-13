@@ -3,6 +3,7 @@ import { useLocation, Link } from "react-router-dom"; // Import Link here
 import Header from "../components/header";
 import "../css/header.css";
 import "../css/button.css";
+import "../css/ot.css";
 
 const OvertimeComponent = () => {
   const location = useLocation();
