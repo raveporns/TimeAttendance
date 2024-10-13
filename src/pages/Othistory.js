@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"; 
 import { useLocation, Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import mockOvertimeEntries from "../mockup/mockup_ot_history";
 import Header from "../components/header";
 import "../css/header.css";
 import "../css/button.css";
@@ -8,32 +8,17 @@ import "../css/ot_history.css";
 
 const OvertimeHistory = () => {
   const location = useLocation();
-  const [entries, setEntries] = useState([]);
-  const navigate = useNavigate(); // เพิ่มการนำทาง
+  const navigate = useNavigate(); // เพิ่มการกำหนด navigate
+  const { overtimeEntries } = location.state || { overtimeEntries: [] }; // ตรวจสอบข้อมูล
 
-  // ดึงข้อมูลการทำงานล่วงเวลาทั้งหมดเมื่อ component ถูก mount
-  useEffect(() => {
-    const fetchOvertimeEntries = async () => {
-      try {
-        const response = await axios.get("http://localhost:8082/overtime/all");
-        setEntries(response.data);
-      } catch (error) {
-        console.error("Error fetching overtime entries:", error);
-      }
-    };
-
-    fetchOvertimeEntries();
-  }, []);
+  // ใช้ข้อมูล mock-up หากไม่มีข้อมูล
+  const [entries, setEntries] = useState(overtimeEntries.length > 0 ? overtimeEntries : mockOvertimeEntries);
 
   // ฟังก์ชันสำหรับลบข้อมูล
-  const handleDelete = async (id) => {
-    try {
-      await axios.delete(`http://localhost:8082/overtime/${id}`);
-      setEntries(prevEntries => prevEntries.filter(entry => entry.id !== id)); // อัปเดต state
-      alert(`ลบข้อมูลที่ ID: ${id}`);
-    } catch (error) {
-      console.error("Error deleting entry:", error);
-    }
+  const handleDelete = (id) => {
+    const newEntries = entries.filter((entry) => entry.id !== id);
+    setEntries(newEntries);
+    alert(`ลบข้อมูลที่ ID: ${id}`);
   };
 
   // ฟังก์ชันสำหรับแก้ไขข้อมูล
@@ -73,13 +58,13 @@ const OvertimeHistory = () => {
             <tbody>
               {entries.length > 0 ? (
                 entries.map((entry) => (
-                  <tr key={entry.id}>
+                  <tr key={entry.id}> {/* ใช้ entry.id แทน index */}
                     <td>{entry.employeeName}</td>
                     <td>{entry.date}</td>
-                    <td>{entry.start_time}</td>
-                    <td>{entry.end_time}</td>
+                    <td>{entry.startTime}</td>
+                    <td>{entry.endTime}</td>
                     <td>{entry.totalTime}</td>
-                    <td>{entry.note}</td>
+                    <td>{entry.details}</td>
                     <td>
                       <button className="editButton" onClick={() => handleEdit(entry.id)}>แก้ไข</button>
                       <button className="deleteButton" onClick={() => handleDelete(entry.id)}>ลบ</button>
