@@ -100,9 +100,7 @@ const OvertimeComponent = () => {
             <Link to="/othistory" className="btn-othis">
               ข้อมูลการทำงานล่วงเวลา
             </Link>
-            <Link to="/home" className="btn-othis">
-              กลับสู่หน้าหลัก
-            </Link>
+            <Link to="/home" className="btn-othis">กลับสู่หน้าหลัก</Link>
           </div>
         </div>
 
@@ -173,9 +171,7 @@ const OvertimeComponent = () => {
                 onChange={(e) => setDetails(e.target.value)}
               />
               <br />
-              <button type="submit" className="btn-submit">
-                บันทึกการทำงานล่วงเวลา
-              </button>
+              <button type="submit" className="btn-submit">บันทึกการทำงานล่วงเวลา</button>
             </form>
           </div>
         </div>

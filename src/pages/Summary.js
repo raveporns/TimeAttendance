@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/header";
+import axios from "axios"; // เพิ่ม axios สำหรับการเรียก API
 import axios from "axios"; // เพิ่ม axios สำหรับการเรียก API
 import "../css/summary.css";
 
