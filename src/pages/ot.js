@@ -91,6 +91,7 @@ const OvertimeComponent = () => {
   return (
     <div>
       <Header />
+<<<<<<< Updated upstream
       <div className="ot-his-content">
         <div className="col-3 bg-light p-3 border">
           <div className="navigation-links-othis">
@@ -179,6 +180,16 @@ const OvertimeComponent = () => {
             </form>
           </div>
         </div>
+=======
+      
+      <h1>ข้อมูลการทํางานล่วงเวลา</h1>
+      <div className="summary-container">
+      <div className="navigation-links">
+                <Link to="/othistory" className="btn-leave">การทํางานล่วงเวลา</Link>
+                <Link to="/ot" className="btn-leave">ข้อมูลการทํางานล่วงเวลา</Link>
+                <Link to="/home" className="btn-leave">กลับสู่หน้าหลัก</Link>
+            </div>
+>>>>>>> Stashed changes
       </div>
     </div>
   );
