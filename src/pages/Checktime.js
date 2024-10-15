@@ -9,27 +9,20 @@ const Checktime = () => {
   const [userName, setUserName] = useState(""); // ชื่อพนักงาน
   const [status, setStatus] = useState(""); // สถานะ
   const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString());
-  const [employeeData, setEmployeeData] = useState([]); // เก็บข้อมูลพนักงาน
-  const [isModalOpen, setIsModalOpen] = useState(false); // สถานะเปิด/ปิดโมเดล
-  const [modalMessage, setModalMessage] = useState(""); // ข้อความในโมเดล
+  const [employeeData, setEmployeeData] = useState([]); // ข้อมูลพนักงาน
+  const [userNames, setUserNames] = useState([]); // รายชื่อพนักงาน
+  const [modalMessage, setModalMessage] = useState(""); // ข้อความในโมดัล
+  const [isModalOpen, setIsModalOpen] = useState(false); // สถานะโมดัล
 
-  const userNames = [
-    { id: "001", name: "กัญญาณัฐ ภูมิวัตร", position: "Developer" },
-    { id: "002", name: "รวีพร สุภาพันธุ์ชัย", position: "Manager" },
-    { id: "003", name: "วัชรมน เผือกกลาง", position: "Designer" },
-    { id: "004", name: "มาร์ค ลี", position: "Engineer" },
-    { id: "005", name: "ลีโอนาร์โด ดิแคพริโอ", position: "Actor" },
-    { id: "006", name: "กร วรรณไพรโรจน์", position: "Technician" },
-    { id: "007", name: "ไทย ชญานนท์", position: "Analyst" },
-    { id: "008", name: "ไอแซค นิวตัน", position: "Scientist" },
-    { id: "009", name: "โอลิเวีย โลดริโก", position: "Singer" },
-    { id: "010", name: "สเตฟาน เคอรี่", position: "Athlete" },
-    { id: "011", name: "เมดิสัน เบียร์", position: "Singer" },
-    { id: "012", name: "เบบี้ ชาร์ค", position: "Cartoon" },
-    { id: "013", name: "บรูโน่ มาร์", position: "Singer" },
-    { id: "014", name: "แมตตี้ ฮีลลี่", position: "Musician" },
-    { id: "015", name: "คาเมโล แอนโทนี", position: "Basketball Player" }
-  ];
+  // จำลองข้อมูลพนักงาน
+  useEffect(() => {
+    // คุณสามารถแทนที่ข้อมูลนี้ด้วยข้อมูลจาก API
+    const mockUserNames = [
+      { id: 1, name: "พนักงาน A", position: "ตำแหน่ง A" },
+      { id: 2, name: "พนักงาน B", position: "ตำแหน่ง B" },
+    ];
+    setUserNames(mockUserNames);
+  }, []);
 
   // อัปเดตเวลาปัจจุบันทุกวินาที
   useEffect(() => {

@@ -1,119 +1,150 @@
 package controller
 
 import (
-	"database/sql"
-	"net/http"
-	"strconv"
+    "database/sql"
+    "net/http"
+    "strconv"
+    "time"
 
-	"db/models"
-
-	"github.com/gin-gonic/gin"
+    "github.com/gin-gonic/gin"
+    "db/models"
 )
 
 type OvertimeController struct {
-	DB *sql.DB
+    DB *sql.DB
 }
 
-// ฟังก์ชันสำหรับเพิ่มข้อมูลการทำงานล่วงเวลา
+// ฟังก์ชันสำหรับเพิ่มข้อมูล
 func (oc *OvertimeController) AddOvertime(c *gin.Context) {
-	var overtime models.Overtime
-	if err := c.ShouldBindJSON(&overtime); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid input"})
-		return
-	}
+    var overtime models.Overtime
+    if err := c.ShouldBindJSON(&overtime); err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid input"})
+        return
+    }
 
-	// ตรวจสอบความถูกต้องของเวลา
-	if overtime.StartTime >= overtime.EndTime {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Start time must be before end time"})
-		return
-	}
+    // คำนวณเวลาทั้งหมด
+    startTime, err := time.Parse("15:04", overtime.StartTime)
+    if err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid start time"})
+        return
+    }
 
-	if err := models.AddOvertime(oc.DB, overtime); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Could not add overtime: " + err.Error()})
-		return
-	}
+    endTime, err := time.Parse("15:04", overtime.EndTime)
+    if err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid end time"})
+        return
+    }
 
-	c.JSON(http.StatusCreated, overtime)
+    // ตรวจสอบว่า endTime ต้องมากกว่า startTime
+    if endTime.Before(startTime) {
+        c.JSON(http.StatusBadRequest, gin.H{"error": "End time must be after start time"})
+        return
+    }
+
+    // คำนวณเวลาทั้งหมด (ชั่วโมง)
+    overtime.AllTime = endTime.Sub(startTime).Hours()
+
+    // บันทึกข้อมูลลงในฐานข้อมูล
+    if err := models.AddOvertime(oc.DB, overtime); err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{"error": "Could not add overtime: " + err.Error()})
+        return
+    }
+
+    c.JSON(http.StatusCreated, overtime)
 }
 
-// ฟังก์ชันสำหรับแสดงข้อมูลการทำงานล่วงเวลาโดย ID
+// ฟังก์ชันสำหรับแสดงข้อมูลโดย ID
 func (oc *OvertimeController) GetOvertimeByID(c *gin.Context) {
-	idStr := c.Param("id")
-	id, err := strconv.Atoi(idStr)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
-		return
-	}
+    idStr := c.Param("id")
+    id, err := strconv.Atoi(idStr)
+    if err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
+        return
+    }
 
-	overtime, err := models.GetOvertimeByID(oc.DB, id)
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Could not fetch overtime: " + err.Error()})
-		return
-	}
+    overtime, err := models.GetOvertimeByID(oc.DB, id)
+    if err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{"error": "Could not fetch overtime: " + err.Error()})
+        return
+    }
 
-	if overtime == nil {
-		c.JSON(http.StatusNotFound, gin.H{"error": "Overtime not found"})
-		return
-	}
+    if overtime == nil {
+        c.JSON(http.StatusNotFound, gin.H{"error": "Overtime not found"})
+        return
+    }
 
-	c.JSON(http.StatusOK, overtime)
+    c.JSON(http.StatusOK, overtime)
 }
 
-// ฟังก์ชันสำหรับแก้ไขข้อมูลการทำงานล่วงเวลา
+// ฟังก์ชันสำหรับอัพเดตข้อมูล
 func (oc *OvertimeController) UpdateOvertime(c *gin.Context) {
-	idStr := c.Param("id")
-	id, err := strconv.Atoi(idStr)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
-		return
-	}
+    idStr := c.Param("id")
+    id, err := strconv.Atoi(idStr)
+    if err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
+        return
+    }
 
-	var overtime models.Overtime
-	if err := c.ShouldBindJSON(&overtime); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid input"})
-		return
-	}
+    var overtime models.Overtime
+    if err := c.ShouldBindJSON(&overtime); err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid input"})
+        return
+    }
 
-	overtime.OvertimeID = id // กำหนด ID ของ overtime
+    // คำนวณเวลาทั้งหมดใหม่
+    startTime, err := time.Parse("15:04", overtime.StartTime)
+    if err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid start time"})
+        return
+    }
 
-	// ตรวจสอบความถูกต้องของเวลา
-	if overtime.StartTime >= overtime.EndTime {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Start time must be before end time"})
-		return
-	}
+    endTime, err := time.Parse("15:04", overtime.EndTime)
+    if err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid end time"})
+        return
+    }
 
-	if err := models.UpdateOvertime(oc.DB, overtime); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Could not update overtime: " + err.Error()})
-		return
-	}
+    // ตรวจสอบว่า endTime ต้องมากกว่า startTime
+    if endTime.Before(startTime) {
+        c.JSON(http.StatusBadRequest, gin.H{"error": "End time must be after start time"})
+        return
+    }
 
-	c.JSON(http.StatusOK, overtime)
+    overtime.OvertimeID = id
+    overtime.AllTime = endTime.Sub(startTime).Hours() // คำนวณเวลาทั้งหมดใหม่
+
+    if err := models.UpdateOvertime(oc.DB, overtime); err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{"error": "Could not update overtime: " + err.Error()})
+        return
+    }
+
+    c.JSON(http.StatusOK, overtime)
 }
 
-// ฟังก์ชันสำหรับลบข้อมูลการทำงานล่วงเวลา
+// ฟังก์ชันสำหรับลบข้อมูล
 func (oc *OvertimeController) DeleteOvertime(c *gin.Context) {
-	idStr := c.Param("id")
-	id, err := strconv.Atoi(idStr)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
-		return
-	}
+    idStr := c.Param("id")
+    id, err := strconv.Atoi(idStr)
+    if err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
+        return
+    }
 
-	if err := models.DeleteOvertime(oc.DB, id); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Could not delete overtime: " + err.Error()})
-		return
-	}
+    if err := models.DeleteOvertime(oc.DB, id); err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{"error": "Could not delete overtime: " + err.Error()})
+        return
+    }
 
-	c.JSON(http.StatusNoContent, nil)
+    c.JSON(http.StatusNoContent, nil)
 }
 
-// ฟังก์ชันสำหรับแสดงข้อมูลการทำงานล่วงเวลาทั้งหมด
+// ฟังก์ชันสำหรับแสดงข้อมูลทั้งหมด
 func (oc *OvertimeController) GetAllOvertime(c *gin.Context) {
-	overtimes, err := models.GetAllOvertime(oc.DB)
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Could not fetch overtimes: " + err.Error()})
-		return
-	}
+    overtimes, err := models.GetAllOvertime(oc.DB)
+    if err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{"error": "Could not fetch overtimes: " + err.Error()})
+        return
+    }
 
-	c.JSON(http.StatusOK, overtimes)
+    c.JSON(http.StatusOK, overtimes)
 }
