@@ -3,9 +3,6 @@ import Modal from "react-modal"; // นำเข้าโมดัล
 import Header from "../components/header";
 import "../css/Checktime.css";
 
-// ตั้งค่า element ที่จะเป็นตัว backdrop ของ modal
-Modal.setAppElement('#root');
-
 const Checktime = () => {
   const [checkInTime, setCheckInTime] = useState(null);
   const [checkOutTime, setCheckOutTime] = useState(null);
@@ -149,32 +146,19 @@ const Checktime = () => {
             >
               เลิกงาน
             </button>
-            <Modal isOpen={isModalOpen} onRequestClose={closeModal}>
-              <h2>ข้อความยืนยัน</h2>
-              <p>{modalMessage}</p>
-              <button onClick={closeModal}>ปิด</button>
-            </Modal>
           </div>
+
+          <Modal
+            isOpen={isModalOpen}
+            onRequestClose={closeModal}
+            className="modal-content"
+            overlayClassName="modal-overlay"
+          >
+            <h2>ข้อความยืนยัน</h2>
+            <p>{modalMessage}</p>
+            <button onClick={closeModal}>ปิด</button>
+          </Modal>
         </div>
-        <div class="modal">
-  <h2>ข้อความยืนยัน</h2>
-  <p>เงื่อนไขสำเร็จ: วัชรมน เผือกกลาง เวลา 22:59:20 (มกราคม)</p>
-  <div class="action-buttons">
-    <button class="close-button">ปิด</button>
-  </div>
-</div>
-        {/* โมเดลสำหรับข้อความยืนยัน */}
-        <Modal
-          isOpen={isModalOpen}
-          onRequestClose={closeModal}
-          contentLabel="Confirmation Modal"
-          className="modal"
-          overlayClassName="overlay"
-        >
-          <h2>ข้อความยืนยัน</h2>
-          <p>{modalMessage}</p>
-          <button onClick={closeModal}>ปิด</button>
-        </Modal>
 
         {/* แสดงข้อมูลพนักงาน */}
         <div className="employee-data">
@@ -192,14 +176,14 @@ const Checktime = () => {
                 </tr>
               </thead>
               <tbody>
-                {employeeData.map((emp, index) => (
+                {employeeData.map((employee, index) => (
                   <tr key={index}>
-                    <td>{emp.id}</td>
-                    <td>{emp.name}</td>
-                    <td>{emp.position}</td>
-                    <td>{emp.checkIn}</td>
-                    <td>{emp.checkOut || "ยังไม่ได้เช็คเอาท์"}</td>
-                    <td>{emp.status}</td>
+                    <td>{employee.id}</td>
+                    <td>{employee.name}</td>
+                    <td>{employee.position}</td>
+                    <td>{employee.checkIn}</td>
+                    <td>{employee.checkOut}</td>
+                    <td>{employee.status}</td>
                   </tr>
                 ))}
               </tbody>

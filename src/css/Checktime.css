@@ -143,45 +143,45 @@
   }
 }
 
-/* สไตล์ modal */
-.modal {
-  background-color: white;
-  padding: 30px; /* เพิ่มระยะห่าง */
-  border-radius: 12px; /* มุมโค้งมน */
-  max-width: 600px; /* ความกว้างสูงสุด */
-  margin: auto;
-  box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.2); /* เงาที่เด่นชัด */
-  animation: fadeIn 0.5s; /* เพิ่มเอฟเฟกต์ fade-in */
-  display: flex;
-  flex-direction: column; /* จัดให้เป็นแนวตั้ง */
-  align-items: center; /* จัดให้อยู่กลาง */
-}
-
-/* เอฟเฟกต์ fade-in */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* สไตล์ overlay */
-.overlay {
-  background-color: rgba(0, 0, 0, 0.7);
-}
-
-/* ปรับปรุงหัวข้อ */
-h2 {
-  text-align: center;
-  color: #000; /* สีตัวอักษรเป็นสีดำ */
-  font-size: 28px; /* ขนาดตัวอักษรใหญ่ขึ้น */
-  margin-bottom: 15px; /* ระยะห่างด้านล่าง */
-  font-family: 'Arial', sans-serif; /* เปลี่ยนฟอนต์ */
-}
-
-/* ปรับปรุงข้อความ */
 p {
   font-size: 18px; /* ขนาดตัวอักษร */
   color: #000; /* สีตัวอักษรเป็นสีดำ */
   text-align: center; /* จัดกลางข้อความ */
   margin-bottom: 25px; /* ระยะห่างด้านล่าง */
   line-height: 1.5; /* ระยะห่างระหว่างบรรทัด */
+}
+
+
+.modal-content {
+  display: flex;
+  flex-direction: column; /* จัดเรียงแนวตั้ง */
+  align-items: center; /* จัดแนวกึ่งกลางในแนวนอน */
+  justify-content: center; /* จัดแนวกึ่งกลางในแนวตั้ง */
+  padding: 20px; /* ขอบเขตภายใน */
+  max-width: 400px; /* ความกว้างสูงสุด */
+  margin: auto; /* จัดศูนย์ */
+  background: white; /* สีพื้นหลัง */
+  border-radius: 8px; /* มุมโค้ง */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* เงา */
+}
+
+.modal-content h2 {
+  margin-bottom: 10px; /* ระยะห่างใต้หัวข้อ */
+}
+
+.modal-content p {
+  margin-bottom: 20px; /* ระยะห่างใต้ข้อความ */
+}
+
+.modal-content button {
+  padding: 10px 20px; /* ขนาดของปุ่ม */
+  background-color: #007bff; /* สีพื้นหลังปุ่ม */
+  color: white; /* สีข้อความในปุ่ม */
+  border: none; /* ไม่ให้มีกรอบ */
+  border-radius: 5px; /* มุมโค้ง */
+  cursor: pointer; /* เปลี่ยนเคอร์เซอร์ */
+}
+
+.modal-content button:hover {
+  background-color: #0056b3; /* เปลี่ยนสีเมื่อเอาเมาส์ไปชี้ */
 }
