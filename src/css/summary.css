@@ -14,10 +14,8 @@ body {
 }
 
 .summary-container {
-  background-color: #ffffff; /* สีพื้นหลังที่อ่อนลง */
   display: flex;
   justify-content: space-between;
-  height: calc(100vh - 50px);
   width: 100%;
   margin: 0;
   border-radius: 5px; /* มุมโค้ง */
@@ -25,6 +23,7 @@ body {
 
 .col-3 {
   width: 25%;
+  height: 78vh !important;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #0078bf;
@@ -32,19 +31,21 @@ body {
 
 .col-sm-9 {
   width: 75%;
+  /* height: 75%; */
   padding: 20px;
   background-color: #ffffff; /* สีพื้นหลังที่อ่อนกว่า */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .table-container {
-  height: calc(100vh - 50px - 20px);
+  height: 69vh !important ;
   overflow-y: auto;
   background-color: #ffffff; /* เปลี่ยนพื้นหลังเพื่อให้ตารางดูชัดเจน */
   border-radius: 5px; /* มุมโค้ง */
 }
 
 .table {
+  height: 75vh;
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px; /* เพิ่มช่องว่างด้านบน */
@@ -118,3 +119,7 @@ body {
   background-color: #e2e6ea; /* สีพื้นหลังเมื่อชี้เมาส์ */
   color: #212529; /* สีตัวอักษรเมื่อชี้เมาส์ */
 }
+
+.col-sm-9 .bg-light .p-3{
+  height: 20%;
+} 

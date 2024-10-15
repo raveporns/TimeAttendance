@@ -68,7 +68,58 @@ const OvertimeHistory = () => {
   };
 
   const handleChange = (e) => {
+    if (window.confirm("คุณแน่ใจหรือไม่ว่าจะลบข้อมูลนี้?")) {
+      try {
+        await axios.delete(`http://localhost:8082/overtime/${id}`);
+        setEntries((prevEntries) =>
+          prevEntries.filter((entry) => entry.OT_id !== id)
+        );
+        alert(`ลบข้อมูลที่ ID: ${id}`);
+      } catch (error) {
+        console.error("Error deleting entry:", error);
+      }
+    }
+  };
+
+  const handleEdit = (entry) => {
+    setEditingId(entry.OT_id);
+    setEditedEntry({
+      employee_id: entry.employee_id,
+      employee_name: entry.employee_name,
+      employee_lastname: entry.employee_lastname,
+      date: entry.date,
+      start_time: entry.start_time,
+      end_time: entry.end_time,
+      note: entry.note,
+    });
+  };
+
+  const handleChange = (e) => {
     const { name, value } = e.target;
+    setEditedEntry((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSave = async (id) => {
+    try {
+      await axios.put(`http://localhost:8082/overtime/${id}`, editedEntry, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      // เรียกใช้ fetchOvertimeEntries เพื่อดึงข้อมูลใหม่
+      fetchOvertimeEntries();
+
+      setEditingId(null); // หยุดการแก้ไข
+      alert("บันทึกข้อมูลเรียบร้อยแล้ว");
+    } catch (error) {
+      console.error("Error updating entry:", error);
+      alert(`เกิดข้อผิดพลาดในการบันทึกข้อมูล: ${error.response?.data?.message || error.message}`);
+    }
+  };
     setEditedEntry((prev) => ({
       ...prev,
       [name]: value,
@@ -124,9 +175,11 @@ const OvertimeHistory = () => {
               <tr>
                 <th>ชื่อพนักงาน</th>
                 <th>นามสกุล</th>
+                <th>นามสกุล</th>
                 <th>วันที่</th>
                 <th>เวลาเริ่มต้น</th>
                 <th>เวลาสิ้นสุด</th>
+                <th>รวมเวลาทั้งหมด (นาที)</th>
                 <th>รวมเวลาทั้งหมด (นาที)</th>
                 <th>รายละเอียด</th>
                 <th>จัดการ</th>
@@ -137,10 +190,23 @@ const OvertimeHistory = () => {
                 entries.map((entry) => (
                   <tr key={entry.OT_id}>
                     {editingId === entry.OT_id ? (
+                  <tr key={entry.OT_id}>
+                    {editingId === entry.OT_id ? (
                       <>
                         <td>
                           <input
                             type="text"
+                            name="employee_name"
+                            value={editedEntry.employee_name}
+                            onChange={handleChange}
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            name="employee_lastname"
+                            value={editedEntry.employee_lastname}
+                            onChange={handleChange}
                             name="employee_name"
                             value={editedEntry.employee_name}
                             onChange={handleChange}

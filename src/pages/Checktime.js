@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-modal"; // นำเข้าโมดัล
 import Header from "../components/header";
 import "../css/Checktime.css";
+import axios from "axios";;
 
 const Checktime = () => {
   const [checkInTime, setCheckInTime] = useState(null);
@@ -29,7 +30,10 @@ const Checktime = () => {
     const timer = setInterval(() => {
       setCurrentTime(new Date().toLocaleTimeString());
     }, 1000);
-    return () => clearInterval(timer);
+
+    return () => {
+      clearInterval(timer);
+    };
   }, []);
 
   const handleCheckIn = () => {
@@ -92,7 +96,11 @@ const Checktime = () => {
   };
 
   const handleNameChange = (event) => {
-    setUserName(event.target.value);
+    setSelectedUser(event.target.value);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   const closeModal = () => {
