@@ -1,28 +1,187 @@
+.work-time-section {  
+  border: 2px solid #ddd; /* กรอบสีเทา */
+  border-radius: 10px; /* มุมโค้งมน */
+  padding: 20px; /* ระยะห่างภายใน */
+  margin-top: 30px; /* เพิ่มระยะห่างจากส่วนหัวข้อ */
+  background-color: #f9f9f9; /* พื้นหลังสีอ่อน */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* เพิ่มเงา */
+}
+
+/* สไตล์ของคอนเทนเนอร์หลัก */
+.checktime-container {
+  max-width: 10000px; /* กำหนดความกว้างสูงสุดของคอนเทนเนอร์ให้กว้างขึ้น */
+  margin: 0 auto; /* จัดกลางในแนวนอน */
+  padding: 20px; /* ระยะห่างภายใน */
+  background-color: #fff; /* สีพื้นหลังของคอนเทนเนอร์ */
+  border-radius: 10px; /* มุมโค้งมน */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* เงา */
+}
+
+/* แสดงข้อมูลพนักงาน */
+.employee-data {
+  max-height: 400px; /* กำหนดความสูงสูงสุดของคอนเทนเนอร์ข้อมูลพนักงาน */
+  overflow-y: auto; /* เลื่อนลูกกลิ้งเมื่อข้อมูลเกิน */
+}
+
+/* ตารางข้อมูลพนักงาน */
+.employee-data table {
+  width: 100%; /* ปรับให้ตารางกว้างสุด */
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.employee-data th, .employee-data td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.employee-data th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.employee-data tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.employee-data tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* การจัดการส่วนแสดงเวลา */
+.clock-display h2 {
+  font-size: 24px;
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* การจัดการ dropdown */
+.user-select label {
+  font-size: 18px;
+  margin-bottom: 10px;
+  display: block;
+  text-align: center;
+}
+
+.user-select select {
+  font-size: 16px;
+  padding: 10px;
+  width: 100%;
+  max-width: 400px;
+  margin: 10px auto;
+  display: block;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+/* ปุ่มเช็คอินและเช็คเอาท์ */
+.check-in-button, .check-out-button, .close-button {
+  background-color: #28a745; /* สีเขียว */
+  color: white; /* สีตัวอักษร */
+  border: none; /* ไม่มีเส้นขอบ */
+  padding: 12px 20px; /* ระยะห่างในปุ่ม */
+  border-radius: 5px; /* มุมโค้งมน */
+  cursor: pointer; /* เปลี่ยนเป็นมือเมื่อชี้ */
+  transition: background-color 0.3s ease, transform 0.2s; /* การเปลี่ยนสีเมื่อ hover */
+  margin: 0 5px; /* ระยะห่างระหว่างปุ่ม */
+  font-size: 16px; /* ขนาดตัวอักษร */
+}
+
+/* สีปุ่มต่างๆ */
+.check-in-button {
+  background-color: #28a745; /* สีเขียว */
+}
+
+.check-in-button:hover {
+  background-color: #218838; /* สีเขียวเข้มเมื่อ hover */
+  transform: scale(1.05); /* เพิ่มขนาดเมื่อ hover */
+}
+
+.check-out-button {
+  background-color: #dc3545; /* สีแดง */
+}
+
+.check-out-button:hover {
+  background-color: #c82333; /* สีแดงเข้มเมื่อ hover */
+  transform: scale(1.05); /* เพิ่มขนาดเมื่อ hover */
+}
+
+/* ปุ่มปิด */
+.close-button {
+  background-color: #dc3545; /* สีแดง */
+}
+
+.close-button:hover {
+  background-color: #c82333; /* สีแดงเข้มเมื่อ hover */
+  transform: scale(1.05); /* เพิ่มขนาดเมื่อ hover */
+}
+
+/* การจัดการปุ่มให้แยกกัน */
 .action-buttons {
-    display: flex; /* จัดปุ่มในแนวนอน */
-    justify-content: space-between; /* ให้ปุ่มอยู่ทางซ้ายและขวา */
-    margin-top: 20px; /* ระยะห่างด้านบนของปุ่ม */
-    width: 300px; /* กำหนดความกว้างรวมของปุ่ม */
-    margin-left: auto; /* จัดกลางในแนวนอน */
-    margin-right: auto; /* จัดกลางในแนวนอน */
+  display: flex; /* ใช้ flexbox เพื่อจัดปุ่ม */
+  justify-content: center; /* จัดกลางในแนวนอน */
+  margin-top: 20px; /* เพิ่มระยะห่างด้านบน */
+}
+
+/* สไตล์มือถือ (Responsive Design) */
+@media (max-width: 600px) {
+  .checktime-container {
+    padding: 15px;
   }
-  
-  .check-in-button, .check-out-button {
-    font-size: 16px; /* ขนาดฟอนต์ที่ใหญ่ขึ้น */
-    padding: 10px 20px; /* เพิ่มระยะห่างภายในปุ่ม */
-    margin: 0 10px; /* เพิ่มช่องไฟด้านข้าง */
-    border: none;
-    border-radius: 5px;
-    flex: 1; /* ทำให้ปุ่มขยายเต็มพื้นที่ */
+
+  .action-buttons {
+    flex-direction: column;
+    width: 100%;
   }
-  
-  .check-in-button {
-    background-color: #008cba; /* สีของปุ่มเข้างาน */
-    color: white; /* สีของตัวหนังสือ */
+
+  .check-in-button, .check-out-button, .close-button {
+    margin: 10px 0;
+    width: 100%;
   }
-  
-  .check-out-button {
-    background-color: #f0ad4e; /* สีของปุ่มเลิกงาน */
-    color: white; /* สีของตัวหนังสือ */
-  }
-  
+}
+
+/* สไตล์ modal */
+.modal {
+  background-color: white;
+  padding: 30px; /* เพิ่มระยะห่าง */
+  border-radius: 12px; /* มุมโค้งมน */
+  max-width: 600px; /* ความกว้างสูงสุด */
+  margin: auto;
+  box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.2); /* เงาที่เด่นชัด */
+  animation: fadeIn 0.5s; /* เพิ่มเอฟเฟกต์ fade-in */
+  display: flex;
+  flex-direction: column; /* จัดให้เป็นแนวตั้ง */
+  align-items: center; /* จัดให้อยู่กลาง */
+}
+
+/* เอฟเฟกต์ fade-in */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* สไตล์ overlay */
+.overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* ปรับปรุงหัวข้อ */
+h2 {
+  text-align: center;
+  color: #000; /* สีตัวอักษรเป็นสีดำ */
+  font-size: 28px; /* ขนาดตัวอักษรใหญ่ขึ้น */
+  margin-bottom: 15px; /* ระยะห่างด้านล่าง */
+  font-family: 'Arial', sans-serif; /* เปลี่ยนฟอนต์ */
+}
+
+/* ปรับปรุงข้อความ */
+p {
+  font-size: 18px; /* ขนาดตัวอักษร */
+  color: #000; /* สีตัวอักษรเป็นสีดำ */
+  text-align: center; /* จัดกลางข้อความ */
+  margin-bottom: 25px; /* ระยะห่างด้านล่าง */
+  line-height: 1.5; /* ระยะห่างระหว่างบรรทัด */
+}
