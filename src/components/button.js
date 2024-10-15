@@ -9,13 +9,8 @@ const Button = () => {
         <Link to="/checktime" className="btn">
           การเข้า-ออกงาน
         </Link>
-<<<<<<< Updated upstream
         <Link to="/othistory" className="btn">
           บันทึกการทำงานล่วงเวลา
-=======
-        <Link to="/ot" className="btn">
-          การทํางานล่วงเวลา
->>>>>>> Stashed changes
         </Link>
         <Link to="/summary" className="btn">
           การรายงานผล
